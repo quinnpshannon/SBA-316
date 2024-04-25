@@ -5,6 +5,7 @@ class Character {
     tags=[];
     element='';
     path='';
+    stars=0;
     addTag= function (newTag) {
         this.tags.push(newTag);
     };
