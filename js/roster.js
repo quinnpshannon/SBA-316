@@ -216,6 +216,26 @@ const roster = [
         'path': 'Hunt'
     }
 ];
+const elements = [
+    'All',
+    'Fire',
+    'Ice',
+    'Imaginary',
+    'Lightning',
+    'Physical',
+    'Quantum',
+    'Wind'
+];
+const paths = [
+    'All',
+    'Abundance',
+    'Destruction',
+    'Erudition',
+    'Harmony',
+    'Hunt',
+    'Nihility',
+    'Preservation'
+];
 // const chara = {
 //     'name': '',
 //     'roles': [],
