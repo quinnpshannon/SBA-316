@@ -1,8 +1,10 @@
 const addChar = document.getElementById('roster');
 const eleFilter = document.getElementById('e-filter');
 const pathFilter = document.getElementById('p-filter');
+const addReset = document.getElementById('addReset');
 pathFilter.addEventListener('change',popDropdowns);
 eleFilter.addEventListener('change',popDropdowns);
+addReset.addEventListener('click',popDropdowns);
 elements.forEach(element => {
     const option = document.createElement('option');
     option.setAttribute('value', element);
@@ -41,20 +43,11 @@ function popDropdowns(event){
         // console.log(`Roles: ${roles.slice(0,roles.length-2)}`);
         // console.log(`Tags: ${tags.slice(0,tags.length-2)}`);
         // console.log(`---------------`);
-        if(checkVal(character.element, eleFilter.value) && checkVal(character.path, pathFilter.value)){
+        if(character.chkEle(eleFilter.value) && character.chkPath(pathFilter.value)){
             const option = document.createElement('option');
             option.setAttribute('value', character.name);
             option.textContent = character.name;
             addChar.appendChild(option);
         }
     });
-}
-function checkVal(char,dropValue){
-    switch (dropValue) {
-        case 'All':
-        case char:
-          return true;
-        default:
-          return false;
-    }
 }

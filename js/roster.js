@@ -1,221 +1,97 @@
-const roster = [
-    {
-        'name': 'Acheron',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Ultimate','Carry'],
-        'element': 'Lightning',
-        'path': 'Nihility'
-    },
-    {
-        'name': 'Aventurine',
-        'roles': ['Sustain','Sub-DPS'],
-        'banner': 'Limited',
-        'tags': ['Follow-up', 'Shielder'],
-        'element': 'Imaginary',
-        'path': 'Preservation'
-    },
-    {
-        'name': 'Argenti',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Ultimate','Carry'],
-        'element': 'Physical',
-        'path': 'Erudition'
-    },
-    {
-        'name': 'Bailu',
-        'roles': ['Sustain'],
-        'banner': 'Standard',
-        'tags': ['Healer','Revive'],
-        'element': 'Lightning',
-        'path': 'Abundance'
-    },
-    {
-        'name': 'Black Swan',
-        'roles': ['DPS','Sub-DPS'],
-        'banner': 'Limited',
-        'tags': ['DOT'],
-        'element': 'Wind',
-        'path': 'Nihility'
-    },
-    {
-        'name': 'Blade',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Self-Damage','Ultimate', 'Carry'],
-        'element': 'Wind',
-        'path': 'Destruction'
-    },
-    {
-        'name': 'Bronya',
-        'roles': ['Support'],
-        'banner': 'Standard',
-        'tags': ['Turn-Order', 'Team-Buffer'],
-        'element': 'Wind',
-        'path': 'Harmony'
-    },
-    {
-        'name': 'Clara',
-        'roles': ['DPS','Sub-DPS'],
-        'banner': 'Standard',
-        'tags': ['Follow-up'],
-        'element': 'Physical',
-        'path': 'Destruction'
-    },
-    {
-        'name': 'Dan Heng Imbibitor Lunae',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Carry','Skill Points','Basic Attack'],
-        'element': 'Imaginary',
-        'path': 'Destruction'
-    },
-    {
-        'name': 'Dr. Ratio',
-        'roles': ['DPS', 'Sub-DPS'],
-        'banner': 'Limited',
-        'tags': ['Follow-up', 'Debuffer', 'Free'],
-        'element': 'Imaginary',
-        'path': 'Hunt'
-    },
-    {
-        'name': 'Fu Xuan',
-        'roles': ['Sustain','Support'],
-        'banner': 'Limited',
-        'tags': ['Follow-up', 'Team-Buffer'],
-        'element': 'Quantum',
-        'path': 'Preservation'
-    },
-    {
-        'name': 'Gepard',
-        'roles': ['Sustain'],
-        'banner': 'Standard',
-        'tags': ['Shielder', 'Self-Revive'],
-        'element': 'Ice',
-        'path': 'Preservation'
-    },
-    {
-        'name': 'Himeko',
-        'roles': ['DPS','Sub-DPS'],
-        'banner': 'Standard',
-        'tags': ['Follow-up'],
-        'element': 'Fire',
-        'path': 'Erudition'
-    },
-    {
-        'name': 'Huohuo',
-        'roles': ['Sustain','Support'],
-        'banner': 'Limited',
-        'tags': ['Healer', 'Team-Buffer'],
-        'element': 'Wind',
-        'path': 'Abundance'
-    },
-    {
-        'name': 'Jing Yuan',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Follow-up','Carry'],
-        'element': 'Lightning',
-        'path': 'Erudition'
-    },
-    {
-        'name': 'Jingliu',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Damage-Team','Carry'],
-        'element': 'Ice',
-        'path': 'Destruction'
-    },
-    {
-        'name': 'Kafka',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['DOT','Follow-up'],
-        'element': 'Lightning',
-        'path': 'Nihility'
-    },
-    {
-        'name': 'Luocha',
-        'roles': ['Sustain'],
-        'banner': 'Limited',
-        'tags': ['Healer','Cleanse','Enemy-Cleanse'],
-        'element': 'Imaginary',
-        'path': 'Abundance'
-    },
-    {
-        'name': 'Ruan Mei',
-        'roles': ['Support'],
-        'banner': 'Limited',
-        'tags': ['Break-effect','Team-Buffer'],
-        'element': 'Ice',
-        'path': 'Harmony'
-    },
-    {
-        'name': 'Seele',
-        'roles': ['DPS'],
-        'banner': 'Limited',
-        'tags': ['Carry', 'Turn-Order'],
-        'element': 'Quantum',
-        'path': 'Hunt'
-    },
-    {
-        'name': 'Silver Wolf',
-        'roles': ['Support'],
-        'banner': 'Limited',
-        'tags': ['Debuffer'],
-        'element': 'Quantum',
-        'path': 'Nihility'
-    },
-    {
-        'name': 'Sparkle',
-        'roles': ['Support'],
-        'banner': 'Limited',
-        'tags': ['Skill Points','Turn-Order'],
-        'element': 'Quantum',
-        'path': 'Harmony'
-    },
-    {
-        'name': 'Topaz and Numby',
-        'roles': ['DPS','Sub-DPS','Support'],
-        'banner': 'Limited',
-        'tags': ['Follow-up', 'Debuffer'],
-        'element': 'Fire',
-        'path': 'Hunt'
-    },
-    {
-        'name': 'Trailblazer Destruction',
-        'roles': ['DPS','Sub-DPS'],
-        'banner': 'Free',
-        'tags': ['Main-Character', 'Free'],
-        'element': 'Physical',
-        'path': 'Destruction'
-    },
-    {
-        'name': 'Trailblazer Preservation',
-        'roles': ['Sustain','Support'],
-        'banner': 'Free',
-        'tags': ['Taunt','Shielder','Taunt'],
-        'element': 'Fire',
-        'path': 'Preservation'
-    },
-    {
-        'name': 'Welt',
-        'roles': ['Sustain','Sub-DPS', 'Support'],
-        'banner': 'Standard',
-        'tags': ['Debuffer'],
-        'element': 'Imaginary',
-        'path': 'Nihility'
-    },
-    {
-        'name': 'Yanqing',
-        'roles': ['DPS','Sub-DPS'],
-        'banner': 'Standard',
-        'tags': ['Follow-up'],
-        'element': 'Ice',
-        'path': 'Hunt'
+class Character {
+    name='';
+    roles=[];
+    banner='';
+    tags=[];
+    element='';
+    path='';
+    addTag= function (newTag) {
+        this.tags.push(newTag);
+    };
+    addRole= function (newRole) {
+        this.roles.push(newRole);
+    };
+    constructor(name, banner, element, path) {
+        this.name = name;
+        this.banner = banner;
+        this.element = element;
+        this.path = path;
     }
-];
+    chkEle= function(element) {
+        switch (element) {
+            case 'All':
+            case this.element:
+              return true;
+            default:
+              return false;
+        }
+    }
+    chkPath= function(path) {
+        switch (path) {
+            case 'All':
+            case this.path:
+              return true;
+            default:
+              return false;
+        }
+    }
+}
+const roster=[];
+roster.push(new Character('Acheron', 'Limited', 'Lightning', 'Nihility'));
+roster[0].addRole('DPS'); roster[0].addTag('Ultimate'); roster[0].addTag('Carry'); 
+roster.push(new Character('Aventurine', 'Limited', 'Imaginary', 'Preservation'));
+roster[1].addRole('Sustain'); roster[1].addRole('Sub-DPS'); roster[1].addTag('Follow-up'); roster[1].addTag('Shielder');
+roster.push(new Character('Argenti', 'Limited', 'Physical', 'Erudition'));
+roster[2].addRole('DPS'); roster[2].addTag('Ultimate'); roster[2].addRole('Carry');
+roster.push(new Character('Bailu', 'Standard', 'Lightning', 'Abundance'));
+roster[3].addRole('Sustain'); roster[3].addTag('Healer'); roster[3].addTag('Revive');
+roster.push(new Character('Black Swan', 'Limited', 'Wind', 'Nihility'));
+roster[4].addRole('DPS'); roster[4].addRole('Sub-DPS'); roster[4].addTag('DOT');
+roster.push(new Character('Blade', 'Limited', 'Wind', 'Destruction'));
+roster[5].addRole('DPS'); roster[5].addTag('Self Damage'); roster[5].addTag('Ultimate'); roster[5].addTag('Carry');
+roster.push(new Character('Bronya', 'Standard', 'Wind', 'Harmony'));
+roster[6].addRole('Support'); roster[6].addTag('Turn Order'); roster[6].addTag('Team Buffer');
+roster.push(new Character('Clara', 'Standard', 'Physical', 'Destruction'));
+roster[7].addRole('DPS'); roster[7].addRole('Sub-DPS'); roster[7].addTag('Follow-Up');
+roster.push(new Character('Dan Heng Imbibitor Lunae', 'Limited', 'Imaginary', 'Destruction'));
+roster[8].addRole('DPS'); roster[8].addTag('Carry'); roster[8].addTag('Skill Negative'); roster[8].addTag('Basic Attack');
+roster.push(new Character('Dr. Ratio', 'Limited', 'Imaginary', 'Hunt'));
+roster[9].addRole('DPS'); roster[9].addRole('Sub-DPS'); roster[8].addTag('Follow-up'); roster[8].addTag('Debuffer'); roster[8].addTag('Free');
+roster.push(new Character('Fu Xuan', 'Limited', 'Quantum', 'Preservation'));
+roster[10].addRole('Sustain'); roster[10].addRole('Support'); roster[10].addTag('Team Buffer');
+roster.push(new Character('Gepard', 'Standard', 'Ice', 'Preservation'));
+roster[11].addRole('Sustain'); roster[11].addTag('Shielder'); roster[11].addTag('Self Revive');
+roster.push(new Character('Himeko', 'Standard', 'Fire', 'Erudition'));
+roster[12].addRole('DPS'); roster[12].addRole('Sub-DPS'); roster[12].addTag('Follow-up');
+roster.push(new Character('Huohuo', 'Limited', 'Wind', 'Abundance'));
+roster[13].addRole('Sustain'); roster[13].addRole('Support'); roster[13].addTag('Healer'); roster[13].addTag('Team Buffer');
+roster.push(new Character('Jing Yuan', 'Limited', 'Lightning', 'Erudition'));
+roster[14].addRole('DPS'); roster[14].addTag('Follow-up'); roster[14].addTag('Carry');
+roster.push(new Character('Jingliu', 'Limited', 'Ice', 'Destruction'));
+roster[15].addRole('DPS'); roster[15].addTag('Damage Team'); roster[15].addTag('Carry');
+roster.push(new Character('Kafka', 'Limited', 'Lightning', 'Nihility'));
+roster[16].addRole('DPS'); roster[16].addTag('Follow-up'); roster[16].addTag('DOT');
+roster.push(new Character('Luocha', 'Limited', 'Imaginary', 'Abundance'));
+roster[17].addRole('Sustain'); roster[17].addTag('Healer'); roster[17].addTag('Cleanse'); roster[17].addTag('Enemy Cleanse');
+roster.push(new Character('Ruan Mei', 'Limited', 'Ice', 'Harmony'));
+roster[18].addRole('Support'); roster[18].addTag('Break Efficiency'); roster[18].addTag('Team Buffer');
+roster.push(new Character('Seele', 'Limited', 'Quantum', 'Hunt'));
+roster[19].addRole('DPS'); roster[19].addTag('Carry'); roster[18].addTag('Turn Order');
+roster.push(new Character('Silver Wolf', 'Limited', 'Quantum', 'Nihility'));
+roster[20].addRole('Support'); roster[20].addTag('Debuffer');
+roster.push(new Character('Sparkle', 'Limited', 'Quantum', 'Harmony'));
+roster[21].addRole('Support'); roster[21].addTag('Skill Positive'); roster[21].addTag('Turn Order');
+roster.push(new Character('Topaz and Numby', 'Limited', 'Fire', 'Hunt'));
+roster[22].addRole('DPS'); roster[22].addRole('Sub-DPS'); roster[22].addRole('Support'); roster[22].addTag('Follow-up'); roster[21].addTag('Debuffer');
+roster.push(new Character('Trailblazer Destruction', 'Free', 'Physical', 'Destruction'));
+roster[23].addRole('DPS'); roster[23].addRole('Sub-DPS'); roster[23].addTag('Main Character'); roster[23].addTag('Free');
+roster.push(new Character('Trailblazer Preservation', 'Free', 'Fire', 'Preservation'));
+roster[24].addRole('Sustain'); roster[24].addRole('Support'); roster[24].addTag('Main Character'); roster[24].addTag('Free'); roster[24].addTag('Shielder'); roster[24].addTag('Taunt');
+roster.push(new Character('Welt', 'Standard', 'Imaginary', 'Nihility'));
+roster[25].addRole('Sub-DPS'); roster[25].addRole('Sustain'); roster[25].addRole('Support'); roster[25].addTag('Debuffer');
+roster.push(new Character('Yanqing', 'Standard', 'Ice', 'Hunt'));
+roster[26].addRole('DPS'); roster[26].addRole('Sub-DPS'); roster[26].addTag('Fragile');
+
 const elements = [
     'All',
     'Fire',
@@ -236,15 +112,3 @@ const paths = [
     'Nihility',
     'Preservation'
 ];
-// const chara = {
-//     'name': '',
-//     'roles': [],
-//     'element': '',
-//     'path': '',
-// };
-// chara.name = 'Aventurine';
-// chara.path = 'Preservation';
-// chara.element = 'Imaginary';
-// chara.roles.push('Sustain');
-// chara.roles.push('Sub-DPS');
-// roster.push(chara);
