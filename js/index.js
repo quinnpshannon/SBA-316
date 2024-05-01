@@ -7,13 +7,11 @@ const addCollection = document.getElementById('addCollection');
 const subCollection = document.getElementById('subCollection');
 const collection = document.getElementById('collection');
 const feedback = document.getElementById('feedback')
-const team = [];
 pathFilter.addEventListener('change',popDropdowns);
 eleFilter.addEventListener('change',popDropdowns);
 addReset.addEventListener('click',reset);
 addCollection.addEventListener('click',popCollection);
 subCollection.addEventListener('click',remCollection);
-
 elements.forEach(element => {
     const option = document.createElement('option');
     option.setAttribute('value', element);
@@ -96,8 +94,8 @@ function remCollection(){
 }
 function reset(event){
     event.preventDefault();
-    eleFilter.value = 'All';
-    pathFilter.value = 'All';
+    eleFilter.value = 'Element';
+    pathFilter.value = 'Path';
     popDropdowns();
 }
 function calculate(event){
@@ -110,13 +108,31 @@ function calculate(event){
             if(drop.value === character.name){
                 character.roles.forEach (role => {
                     roles.push(role);
-                });                
+                });
             }
         }
     });
-    // console.log(event.srcElement.parentElement);
-
+    let fbk = 0;
     feedback.lastElementChild.innerText = `Here are the roles you have: ${roles.join(', ')}`;
+    if(!roles.includes('DPS')){
+        feedback.lastElementChild.innerText += `
+        You could use some more DPS Characters!`;
+        fbk++;
+    };
+    if(!roles.includes('Sustain')){
+        feedback.lastElementChild.innerText += `
+        You might have trouble surviving combat. Add some Sustain characters!`;
+        fbk++
+    };
+    if(!roles.includes('Support')){
+        feedback.lastElementChild.innerText += `
+        Things might go a little faster with some Support characters!`;
+        fbk++
+    };
+    if(fbk===0){
+        feedback.lastElementChild.innerText += `
+        Your team looks pretty balanced! Have fun out there!`;
+    };
 }
 function buildCard(event, character){
     clearCard(event);

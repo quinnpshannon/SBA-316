@@ -23,7 +23,7 @@ class Character {
     }
     chkEle= function(element) {
         switch (element) {
-            case 'All':
+            case 'Element':
             case this.element:
               return true;
             default:
@@ -32,7 +32,7 @@ class Character {
     }
     chkPath= function(path) {
         switch (path) {
-            case 'All':
+            case 'Path':
             case this.path:
               return true;
             default:
@@ -100,7 +100,7 @@ roster.push(new Character('Yanqing', 'Standard', 'Ice', 'Hunt', '1209'));
 roster[26].addRole('DPS'); roster[26].addRole('Sub-DPS'); roster[26].addTag('Fragile');
 
 const elements = [
-    'All',
+    'Element',
     'Fire',
     'Ice',
     'Imaginary',
@@ -110,7 +110,7 @@ const elements = [
     'Wind'
 ];
 const paths = [
-    'All',
+    'Path',
     'Abundance',
     'Destruction',
     'Erudition',
