@@ -7,6 +7,10 @@ const addCollection = document.getElementById('addCollection');
 const subCollection = document.getElementById('subCollection');
 const collection = document.getElementById('collection');
 const feedback = document.getElementById('feedback')
+const userButton = document.getElementById('newUser')
+const register = document.getElementById('register')
+userButton.addEventListener('click',submitRegister);
+register.addEventListener('change',verifyContent);
 pathFilter.addEventListener('change',popDropdowns);
 eleFilter.addEventListener('change',popDropdowns);
 addReset.addEventListener('click',reset);
@@ -100,8 +104,13 @@ function reset(event){
 }
 function calculate(event){
     const roles = [];
+    const team = [];
+    feedback.lastElementChild.innerText = ''
     roster.forEach(character =>{
-        if(event.target.value ===  character.name){
+        if(event.target.value === ''){
+            clearCard(event);
+        }
+        if(event.target.value === character.name){
             buildCard(event, character);
         }
         for(drop of dropdowns){
@@ -109,27 +118,37 @@ function calculate(event){
                 character.roles.forEach (role => {
                     roles.push(role);
                 });
+                console.log(team);
+                if(team.includes(character.name)){
+                    feedback.lastElementChild.innerText += 'No duplicates!\n';
+                } else team.push(character.name);
+                console.log(team);
             }
         }
     });
     let fbk = 0;
-    feedback.lastElementChild.innerText = `Here are the roles you have: ${roles.join(', ')}`;
+    feedback.lastElementChild.innerText += `Here are the roles you have: ${roles.join(', ')}`;
     if(!roles.includes('DPS')){
+        feedback.classList.add('uh-oh');
+        console.log(feedback.classList)
         feedback.lastElementChild.innerText += `
         You could use some more DPS Characters!`;
         fbk++;
     };
     if(!roles.includes('Sustain')){
+        feedback.classList.add('uh-oh');
         feedback.lastElementChild.innerText += `
         You might have trouble surviving combat. Add some Sustain characters!`;
         fbk++
     };
     if(!roles.includes('Support')){
+        feedback.classList.add('uh-oh');
         feedback.lastElementChild.innerText += `
         Things might go a little faster with some Support characters!`;
         fbk++
     };
     if(fbk===0){
+        feedback.classList.remove('uh-oh');
         feedback.lastElementChild.innerText += `
         Your team looks pretty balanced! Have fun out there!`;
     };
@@ -165,4 +184,10 @@ function clearCard(event){
     while (event.srcElement.parentElement.lastElementChild != event.target) {
         event.srcElement.parentElement.lastElementChild.remove();
     }
+}
+function submitRegister (event){
+    // event.preventDefault();
+}
+function verifyContent (event){
+    console.log(event.target);
 }

@@ -6,15 +6,29 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/roster.js" defer></script>
     <script src="./js/index.js" defer></script>
-    <title>Document</title>
+    <title>HSR Team Builder</title>
 </head>
 <body>
     <div class="container">
       <!-- Character Additions to Owned Characters -->
+      <div style="width: 300px">
+        <h1>Register</h1>
+        <!-- Registration Form -->
+        <form id="register">
+          <label>User Name: </label>
+          <input type="input" name="User Name" id="usrName" required>
+          <label>UID: </label>
+          <input type="input" name="UID" id="uid" minlength="9" maxlength="9" required>
+          <label>Password: </label>
+          <input type="password" name="Password" id="pass1" required>
+          <label>Retype Password: </label>
+          <input type="password" name="Retype Password" id="pass2" required>
+          <input type="submit" id="newUser">
+        </form>
+      </div>
       <div style="width: 250px" >
         <h1>Characters</h1>
         <p>Use the dropdowns below to add to your collection of characters!</p>
-        <!-- Registration Form -->
         <form id="characterAdd">
           <select name="path" id="p-filter">
           </select>
