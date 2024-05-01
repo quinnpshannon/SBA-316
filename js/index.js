@@ -6,11 +6,14 @@ const addReset = document.getElementById('addReset');
 const addCollection = document.getElementById('addCollection');
 const subCollection = document.getElementById('subCollection');
 const collection = document.getElementById('collection');
+const feedback = document.getElementById('feedback')
+const team = [];
 pathFilter.addEventListener('change',popDropdowns);
 eleFilter.addEventListener('change',popDropdowns);
 addReset.addEventListener('click',reset);
 addCollection.addEventListener('click',popCollection);
 subCollection.addEventListener('click',remCollection);
+
 elements.forEach(element => {
     const option = document.createElement('option');
     option.setAttribute('value', element);
@@ -28,7 +31,11 @@ const fragment = new DocumentFragment();
 for(let x=0;x<4;x++){
     const div = document.createElement('div');
     const img = document.createElement('img');
-    const dropdown = document.createElement('select')
+    const dropdown = document.createElement('select');
+    const choose = document.createElement('option');
+    choose.setAttribute('value', '');
+    choose.textContent = 'Collection';
+    dropdown.appendChild(choose);
     img.setAttribute('src','./images/0000.png');
     img.setAttribute('height','188px');
     img.style.marginBottom = '5px';
@@ -61,6 +68,7 @@ function popCollection(){
     }
     const option = document.createElement('option');
     option.setAttribute('value', addChar.value);
+    option.setAttribute('selected', '');
     option.textContent = addChar.value;
     for(drop of dropdowns){
         const option = document.createElement('option');
@@ -75,7 +83,13 @@ function remCollection(){
         if(collection.children[x].value === collection.value){
             collection.removeChild(collection.children[x]);
             for(drop of dropdowns){
-                drop.removeChild(drop.children[x]);
+                drop.removeChild(drop.children[x+1]);
+                if(drop.value === ''){
+                    drop.parentElement.firstElementChild.src='./images/0000.png'
+                    while (drop.parentElement.lastElementChild != drop) {
+                        drop.parentElement.lastElementChild.remove();
+                    }
+                }
             }
         }
     }
@@ -87,25 +101,52 @@ function reset(event){
     popDropdowns();
 }
 function calculate(event){
+    const roles = [];
     roster.forEach(character =>{
         if(event.target.value ===  character.name){
             buildCard(event, character);
         }
+        for(drop of dropdowns){
+            if(drop.value === character.name){
+                character.roles.forEach (role => {
+                    roles.push(role);
+                });                
+            }
+        }
     });
     // console.log(event.srcElement.parentElement);
+
+    feedback.lastElementChild.innerText = `Here are the roles you have: ${roles.join(', ')}`;
 }
 function buildCard(event, character){
-    
+    clearCard(event);
+    const papa = event.srcElement.parentElement;
     event.target.previousSibling.setAttribute('src','./images/'+character.image+'.png');
-    event.srcElement.parentElement.appendChild(document.createElement('ul'));
-    while (event.srcElement.parentElement.lastElementChild.lastElementChild != null) {
-        console.log(event.srcElement.parentElement.lastElementChild.lastElementChild);
-        event.srcElement.parentElement.lastElementChild.lastElementChild.remove();
-    }
-    console.log(character);
-    character.populate().forEach (data => {
+    papa.appendChild(document.createElement('ul'));
+    const name = document.createElement('li');
+    name.innerText = `Name: ${character.name}`;
+    papa.lastElementChild.appendChild(name);
+    const ele = document.createElement('li');
+    ele.innerText = `Element: ${character.element}`;
+    papa.lastElementChild.appendChild(ele);
+    const path = document.createElement('li');
+    path.innerText = `Path: ${character.path}`;
+    papa.lastElementChild.appendChild(path);
+    character.roles.forEach (role => {
         const li = document.createElement('li');
-        li.innerText = data;
-        event.srcElement.parentElement.lastElementChild.appendChild(li);
+        li.innerText = role;
+        papa.lastElementChild.appendChild(li);
     });
+    // Tags are a future Quinn problem
+    // character.tags.forEach (tag => {
+    //     const li = document.createElement('li');
+    //     li.innerText = tag;
+    //     papa.lastElementChild.appendChild(li);
+    // });
+}
+function clearCard(event){
+    event.target.previousSibling.setAttribute('src','./images/0000.png');
+    while (event.srcElement.parentElement.lastElementChild != event.target) {
+        event.srcElement.parentElement.lastElementChild.remove();
+    }
 }

@@ -17,8 +17,14 @@ main div select {
     width: 180px;
 }
 footer {
-    background-color: blueviolet;
+    background-color: grey;
 }
 ul {
     list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+#container {
+    display: flex;
+    justify-content: center;
 }
