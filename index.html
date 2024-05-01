@@ -10,26 +10,31 @@
 </head>
 <body>
     <!-- Container for entire form. -->
-    <div class="owned">
-        <!-- Registration Side -->
-        <div>
-          <h1>Characters</h1>
-          <p>Please provide your information below.</p>
-  
-          <!-- Registration Form -->
-          <form id="characterAdd">
-            <select name="path" id="p-filter">
-            </select>
-            <select name="element" id="e-filter">
-            </select>
-            <input type="reset" name="reset" id="addReset"><br>
-            <select name="roster" id="roster">
-            </select>
-            <input type="button" value="Add" id="addCollection">
-            <input type="button" value="Remove" id="subCollection">
-          </form>
-          <select name="collection" id="collection">
+    <div>
+      <!-- Registration Side -->
+      <div>
+        <h1>Characters</h1>
+        <p>Please provide your information below.</p>
+        <!-- Registration Form -->
+        <form id="characterAdd">
+          <select name="path" id="p-filter">
           </select>
-        </div>
+          <select name="element" id="e-filter">
+          </select>
+          <input type="reset" name="reset" id="addReset"><br>
+          <select name="roster" id="roster">
+          </select>
+          <input type="button" value="Add" id="addCollection">
+        </form>
+        <select name="collection" id="collection">
+        </select>
+        <input type="button" value="Remove" id="subCollection">
+      </div>
+    </div>
+    <main id="cardStorage">
+    </main>
+    <footer id="feedback">
+      <h1>Hello!</h1>
+    </footer>
 </body>
 </html>

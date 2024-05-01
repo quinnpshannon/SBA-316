@@ -1,4 +1,4 @@
-// import * as roster from './roster.js';
+const main = document.querySelector('main');
 const addChar = document.getElementById('roster');
 const eleFilter = document.getElementById('e-filter');
 const pathFilter = document.getElementById('p-filter');
@@ -23,6 +23,23 @@ paths.forEach(path => {
     option.textContent = path;
     pathFilter.appendChild(option);
 });
+// START OF THE FRAGMENT NONSENSE
+const fragment = new DocumentFragment();
+for(let x=0;x<4;x++){
+    const div = document.createElement('div');
+    const img = document.createElement('img');
+    const dropdown = document.createElement('select')
+    img.setAttribute('src','./images/0000.png');
+    img.setAttribute('height','188px');
+    img.style.marginBottom = '5px';
+    div.append(img);
+    div.append(dropdown);
+    fragment.append(div);
+}
+main.prepend(fragment);
+const dropdowns = main.getElementsByTagName('select')
+//END OF THE FRAGMENT NONSENSE
+main.addEventListener('change',calculate);
 popDropdowns();
 function popDropdowns(event){
     while (addChar.lastElementChild != null) {
@@ -38,7 +55,6 @@ function popDropdowns(event){
     });
 }
 function popCollection(){
-    console.log(collection.children.length);
     for(let x = 0;x<collection.children.length;x++)
     {
         if(collection.children[x].value === addChar.value) return;
@@ -46,12 +62,22 @@ function popCollection(){
     const option = document.createElement('option');
     option.setAttribute('value', addChar.value);
     option.textContent = addChar.value;
+    for(drop of dropdowns){
+        const option = document.createElement('option');
+        option.setAttribute('value', addChar.value);
+        option.textContent = addChar.value;
+        drop.appendChild(option);
+    }
     collection.appendChild(option);
 }
 function remCollection(){
-    for(let x = 0;x<collection.children.length;x++)
-    {
-        if(collection.children[x].value === collection.value) collection.removeChild(collection.children[x]);
+    for(let x = 0;x<collection.children.length;x++){
+        if(collection.children[x].value === collection.value){
+            collection.removeChild(collection.children[x]);
+            for(drop of dropdowns){
+                drop.removeChild(drop.children[x]);
+            }
+        }
     }
 }
 function reset(event){
@@ -59,4 +85,27 @@ function reset(event){
     eleFilter.value = 'All';
     pathFilter.value = 'All';
     popDropdowns();
+}
+function calculate(event){
+    roster.forEach(character =>{
+        if(event.target.value ===  character.name){
+            buildCard(event, character);
+        }
+    });
+    // console.log(event.srcElement.parentElement);
+}
+function buildCard(event, character){
+    
+    event.target.previousSibling.setAttribute('src','./images/'+character.image+'.png');
+    event.srcElement.parentElement.appendChild(document.createElement('ul'));
+    while (event.srcElement.parentElement.lastElementChild.lastElementChild != null) {
+        console.log(event.srcElement.parentElement.lastElementChild.lastElementChild);
+        event.srcElement.parentElement.lastElementChild.lastElementChild.remove();
+    }
+    console.log(character);
+    character.populate().forEach (data => {
+        const li = document.createElement('li');
+        li.innerText = data;
+        event.srcElement.parentElement.lastElementChild.appendChild(li);
+    });
 }
